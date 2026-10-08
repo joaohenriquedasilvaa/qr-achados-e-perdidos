@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel de Alunos • QR Codes</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="side">
+  <div class="brand"><i class="fa-solid fa-qrcode"></i><span>QR Alunos</span></div>
+  <button class="nav on" data-view="dashboard"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></button>
+  <button class="nav" data-view="cadastro"><i class="fa-solid fa-user-plus"></i><span>Cadastro</span></button>
+  <button class="nav" data-view="alunos"><i class="fa-solid fa-users"></i><span>Alunos</span></button>
+</nav>
+<main>
+  <section id="dashboard" class="view on">
+    <h1>Dashboard</h1>
+    <div class="grid3">
+      <div class="card stat"><i class="fa-solid fa-users"></i><b id="stTotal">0</b><small>Alunos cadastrados</small></div>
+      <div class="card stat"><i class="fa-solid fa-calendar-day"></i><b id="stHoje">0</b><small>Cadastrados hoje</small></div>
+      <div class="card stat"><i class="fa-solid fa-clock"></i><b id="stUlt">—</b><small>Último cadastro</small></div>
+    </div>
+    
+  </section>
+
+  <section id="cadastro" class="view">
+    <h1 id="tituloForm">Cadastrar aluno</h1>
+    <div class="grid2">
+      <form class="card" id="form" novalidate>
+        <label>Nome completo<input id="nome" autocomplete="off" placeholder="Maria da Silva"></label>
+        <small class="err" id="eNome"></small>
+        <label>WhatsApp<input id="whats" inputmode="tel" placeholder="(45) 99999-9999"></label>
+        <small class="err" id="eWhats"></small>
+        <div class="row"><button class="btn" type="submit"><i class="fa-solid fa-check"></i> <span id="btnSalvar">Cadastrar aluno</span></button>
+        <button class="btn ghost" type="button" onclick="cancelarEdicao()">Limpar</button></div>
+      </form>
+      <div class="card" id="resultado"><p class="muted empty"><i class="fa-solid fa-qrcode"></i><br>O QR Code aparece aqui depois do cadastro.</p></div>
+    </div>
+  </section>
+
+  <section id="alunos" class="view">
+    <h1>Alunos</h1>
+    <div class="card">
+      <div class="row">
+        <input id="buscaNome" placeholder="Buscar por nome">
+        <input id="buscaTel" placeholder="Buscar por telefone">
+      </div>
+      <div class="scroll"><table>
+        <thead><tr><th>Nome</th><th>WhatsApp</th><th>ID</th><th>Ações</th></tr></thead>
+        <tbody id="lista"></tbody>
+      </table></div>
+    </div>
+  </section>
+</main>
+
+<div class="modal" id="modal"><div class="card box"><button class="x" onclick="fecharModal()" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button><div id="modalConteudo"></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
